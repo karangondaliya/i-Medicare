@@ -1,0 +1,37 @@
+const express = require('express');
+const { loginController, registerController, authController, applyDoctorController, getAllNotificationController, deleteAllNotificationController, getAllDoctorController, bookAppointmentController, bookingAvailabilityController, userAppointmentController } = require('../controllers/user-controllers');
+const authMiddleware = require('../middlerwares/authMiddleware');
+
+//router object
+const router = express.Router();
+
+//routes
+//LOGIN || POST
+router.post('/login', loginController);
+
+//Register || POST
+router.post('/register', registerController);
+
+//Auth || POST
+router.post("/getUserData", authMiddleware, authController)
+
+//Apply Doctor || POST
+router.post("/apply-doctor", authMiddleware, applyDoctorController)
+
+router.post("/get-all-notification", authMiddleware, getAllNotificationController)
+
+router.post("/delete-all-notification", authMiddleware, deleteAllNotificationController)
+
+//Get All DOC
+router.get('/getAllDoctors', authMiddleware, getAllDoctorController)
+
+//BOOK APPOINTMENT
+router.post('/book-appointment', authMiddleware, bookAppointmentController);
+
+//Booking Availabilty
+router.post('/booking-availability', authMiddleware, bookingAvailabilityController);
+
+//Appointment List
+router.get('/user-appointment', authMiddleware, userAppointmentController)
+
+module.exports = router;
