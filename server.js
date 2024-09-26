@@ -6,6 +6,7 @@ const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 const fileUpload = require('express-fileupload');
 const path = require('path');
+const cors = require('cors');
 
 //dotenv config
 dotenv.config()
@@ -21,6 +22,10 @@ const port = process.env.PORT || 8080
 app.use(express.json());
 app.use(morgan('dev'));
 app.use(fileUpload());
+app.use(cors({
+    origin: "https://i-medicare.onrender.com", 
+    credentials: true
+}))
 
 //Static Files
 app.use(express.static(path.join(__dirname, './client/build')));
