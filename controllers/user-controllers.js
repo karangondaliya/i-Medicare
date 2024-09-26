@@ -152,6 +152,7 @@ const deleteAllNotificationController = async (req, res) => {
 //Get All Doc
 const getAllDoctorController = async (req, res) => {
     try{
+        console.log(req.body);
         const doctors = await Doctor.find({status: 'approved'});
         res.status(200).send({
             success: true,
