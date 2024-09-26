@@ -17,24 +17,12 @@ const userSchema = new Schema({
 });
 
 const patientSchema = new Schema({
-  first_name: String,
-  last_name: String,
+  userId: { type: String},
   date_of_birth: Date,
   gender: String,
-  address: {
-    street: String,
-    city: String,
-    state: String,
-    zip_code: String,
-  },
+  address: String,
   contact_number: String,
-  email: String,
   blood_group: String,
-  medical_history: [{
-    condition: String,
-    date_diagnosed: Date,
-    treatment: String,
-  }],
   last_reports: {
     diabetes: String,
     blood_pressure: String,
@@ -80,4 +68,10 @@ module.exports = {
   Patient,
   Doctor,
   Appointment,
+  Billing,
+  Staff,
+  Room,
+  MedicalRecord,
+  OrganDonation,
+  Finance
 };

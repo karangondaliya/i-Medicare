@@ -2,7 +2,7 @@ const { Doctor, Appointment, User } = require("../models/models");
 
 const getDoctorInfoController = async (req,res) => {
     try{
-        console.log(req.body);
+        //console.log(req.body);
         const doctor = await Doctor.findOne({userId: req.body.userId});
         res.status(200).send({
             success: true,
@@ -10,7 +10,7 @@ const getDoctorInfoController = async (req,res) => {
             doctor
         })
     }catch(err){
-        console.log(err);
+        //console.log(err);
         res.status(500).send({
             success: false,
             message: "Error in Fetching Doctor Info",
@@ -28,7 +28,7 @@ const updateProfileController = async (req, res) => {
             message: "Doctor Profile Updated"
         })
     }catch(err){
-        console.log(err);
+        // console.log(err);
         res.status(500).send({
             success: false,
             message: "Error in Updating the user",
@@ -47,7 +47,7 @@ const getDoctorByIdController = async (req, res) => {
             data: doctor
         })
     }catch(err){
-        console.log(err);
+        // console.log(err);
         res.status(500).send({
             success: false,
             message: "Error in Fetching Doctor Info",
@@ -66,7 +66,7 @@ const doctorAppointmentController = async (req,res) => {
             data: appointments
         })
     }catch(err){
-        console.log(err);
+        // console.log(err);
         res.status(500).send({
             success:false,
             message:'Error While Fetching Appointments',
@@ -78,8 +78,9 @@ const doctorAppointmentController = async (req,res) => {
 const updateStatusController = async (req,res) => {
     try{
         const {appointmentId, status} = req.body;
-        const appointments = await Appointment.findById(appointmentId, {status});
-        const user = await User.findOne({_id: appointments.userId})
+        const appointments = await Appointment.findByIdAndUpdate(appointmentId, {status});
+        console.log(appointments.user_id);
+        const user = await User.findOne({_id: appointments.user_id})
         const notification = user.notification;
         notification.push({
             type: 'Status Updated',
@@ -92,7 +93,7 @@ const updateStatusController = async (req,res) => {
             message:'Status Updated Successfully',
         })
     }catch(err){
-        console.log(err);
+        // console.log(err);
         res.status(500).send({
             success: false,
             message:'Error While updating Status',

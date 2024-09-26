@@ -9,7 +9,7 @@ const getAllUsersController = async (req, res) => {
             data: users
         })
     }catch(err){
-        console.log(err);
+        // console.log(err);
         res.status(500).json({
             message: "Error While Fetching All Users",
             success: false,
@@ -27,7 +27,7 @@ const getAllDoctorsController = async (req, res) => {
             data: doctors
         })
     }catch(err){
-        console.log(err);
+        // console.log(err);
         res.status(500).json({
             message: "Error While Fetching All Doctors",
             success: false,
@@ -56,7 +56,7 @@ const changeAccountStatusController = async (req, res) => {
         data: doctor,
       });
     } catch (error) {
-      console.log(error);
+      //console.log(error);
       res.status(500).send({
         success: false,
         message: "Eror in Account Status",
