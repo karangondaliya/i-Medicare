@@ -68,10 +68,4 @@ module.exports = {
   Patient,
   Doctor,
   Appointment,
-  Billing,
-  Staff,
-  Room,
-  MedicalRecord,
-  OrganDonation,
-  Finance
 };
