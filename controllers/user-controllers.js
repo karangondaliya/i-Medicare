@@ -246,6 +246,84 @@ const userAppointmentController = async (req,res) => {
     }
 }
 
+const getUserInfoController = async (req, res) => {
+    try{
+        const user = await User.findOne({_id: req.body.userId});
+        const patient = await Patient.findOne({userId: req.body.userId});
+        res.status(200).send({
+            success: true,
+            message: 'User Fetch Successfully',
+            user,
+            patient
+        })
+    }catch(err){
+        //console.log(err);
+        res.status(500).send({
+            success: false,
+            message: 'Error While Fetching User Info',
+            err
+        })
+    }
+}
+
+const updateProfileController = async (req, res) => {
+    try{
+        //console.log(req.body);
+        const password = req.body.password;
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
+        req.body.password = hashedPassword;
+        const userData = {
+            username: req.body.username,
+            email: req.body.email,
+            password: req.body.password,
+        };
+        const user = await User.findOneAndUpdate({_id: req.body.userId}, userData)
+        const pdfFile = req.files ? req.files.last_reports : null;
+
+        let pdfPath;
+        const uploadsDir = path.join(__dirname, '..', 'uploads');
+        if (!fs.existsSync(uploadsDir)){
+            fs.mkdirSync(uploadsDir);
+        }
+        if (pdfFile) {
+            const uploadPath = path.join(__dirname, '..', 'uploads', pdfFile.name); // Set the desired upload path
+            pdfFile.mv(uploadPath, (err) => {
+                if (err) {
+                    return res.status(500).send({ success: false, message: "Error in uploading file", err });
+                }
+            });
+            pdfPath = uploadPath;  // Store the path of the uploaded file
+        }
+        const patientData = {
+            date_of_birth: req.body.dob,
+            gender: req.body.gender,
+            address: req.body.address,
+            contact_number: req.body.contact_number,
+            blood_group: req.body.blood_group,
+            last_reports: pdfPath ? pdfPath : undefined,  // Store the path in the database
+        };
+        
+        let patient = await Patient.findOneAndUpdate({ userId: req.body.userId }, patientData);
+        if (!patient) {
+            patient = new Patient({ ...patientData, userId: req.body.userId });
+            await patient.save();
+        }
+        res.status(200).send({
+            success: true,
+            data: user,
+            message: "User Profile Updated"
+        })
+    }catch(err){
+        //console.log(err);
+        res.status(500).send({
+            success: false,
+            message: "Error in Updating the user",
+            err
+        })
+    }
+}
+
 module.exports = {
     loginController,
     registerController,
@@ -256,5 +334,7 @@ module.exports = {
     getAllDoctorController,
     bookAppointmentController,
     bookingAvailabilityController,
-    userAppointmentController
+    userAppointmentController,
+    getUserInfoController,
+    updateProfileController
 };
