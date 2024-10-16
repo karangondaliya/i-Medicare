@@ -12,7 +12,7 @@ module.exports = async (req, res, next) => {
             }
         });
     } catch (err) {
-        console.log(err);
+        //console.log(err);
         res.status(401).send({
             message: `Auth Failed`,
             success: false
