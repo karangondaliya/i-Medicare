@@ -1,0 +1,17 @@
+.medical-card {
+    margin-bottom: 16px; /* Space between cards */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+}
+
+.record-details {
+    padding: 10px 0; /* Padding inside the card */
+}
+
+.record-details p {
+    margin: 0; /* Remove default margins for paragraphs */
+}
+
+.text-center {
+    text-align: center; /* Center text */
+}
