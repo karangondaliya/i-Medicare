@@ -70,7 +70,7 @@ const DocProfile = () => {
     },[])
   return (
     <Layout>
-        <h1>Manage Profile</h1>
+        <h1 className='text-center'>Manage Profile</h1>
         {doctor && (
           <Form layout="vertical" onFinish={handleFinish} className='m-3' initialValues={{...doctor, timings: [moment(doctor.timings[0], 'HH:mm'),moment(doctor.timings[1], 'HH:mm')]}}>
           <h4>Personal Details : </h4>
@@ -123,10 +123,12 @@ const DocProfile = () => {
                           <Input type="number" placeholder='Your Fees' />
                       </Form.Item>
                   </Col>
-                  <Col xs={24} md={24} lg={8}>
-                            <Form.Item label="Timings" name="timings" rules={[{ required: true }]}>
-                                <TimePicker.RangePicker format="HH:mm" />
-                            </Form.Item>
+    
+                    <Col xs={24} md={24} lg={8}>
+                        <Form.Item label="Timings" name="timings" required>
+                            <TimePicker.RangePicker format="HH:mm" />
+                        </Form.Item>
+                        
                     </Col>
                   <Col xs={24} md={24} lg={8}></Col>
                   <Col xs={24} md={24} lg={8}>

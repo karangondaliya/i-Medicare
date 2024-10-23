@@ -80,7 +80,7 @@ const Profile = () => {
 
     return (
         <Layout>
-            <h1>Manage Profile</h1>
+            <h1 className='text-center'>Manage Profile</h1>
             {users && (
                 <Form
                     layout='vertical'
@@ -94,19 +94,19 @@ const Profile = () => {
                 >
                     <Row gutter={20}>
                         <Col xs={24} md={24} lg={8}>
-                            <Form.Item label="Name" name="username" required rules={[{ required: true }]}>
+                            <Form.Item label="Name" name="username" required rules={[{ required: true, message: 'UserName is required' }]}>
                                 <Input type="text" placeholder='Your Name' />
                             </Form.Item>
                         </Col>
 
                         <Col xs={24} md={24} lg={8}>
-                            <Form.Item label="Email" name="email" required rules={[{ required: true }]}>
+                            <Form.Item label="Email" name="email" required rules={[{ required: true, message: 'Email is required' }]}>
                                 <Input type="email" placeholder='Your Email Address' />
                             </Form.Item>
                         </Col>
 
                         <Col xs={24} md={24} lg={8}>
-                            <Form.Item label="Password" name="password" required rules={[{ required: true }]}>
+                            <Form.Item label="Password" name="password" required rules={[{ required: true, message: 'Password is required' }]}>
                                 <Input type="password" placeholder='Your Password' />
                             </Form.Item>
                         </Col>

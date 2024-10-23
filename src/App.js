@@ -20,6 +20,8 @@ import MedicalHistory from './pages/MedicalHistory';
 import AddRecords from './pages/doctor/AddRecords';
 import AllMedicalHistory from './pages/admin/AllMedicalHistory';
 import OrganDonationDetails from './pages/admin/OrganDonationDetails';
+import AboutUs from './pages/AboutUs';
+import FeedbackList from './pages/admin/FeedbackList';
 
 
 function App() {
@@ -64,6 +66,11 @@ function App() {
                 <OrganDonationDetails />
               </ProtectedRoute>
             } />
+            <Route path="/admin/feedback-list" element={
+              <ProtectedRoute>
+                <FeedbackList/>
+              </ProtectedRoute>
+            } />
             <Route path="/profile" element={
               <ProtectedRoute>
                 <Profile />
@@ -87,6 +94,11 @@ function App() {
             <Route path="/organ-donate" element={
               <ProtectedRoute>
                 <OrganDonation />
+              </ProtectedRoute>
+            } />
+            <Route path="/about-us" element={
+              <ProtectedRoute>
+                <AboutUs />
               </ProtectedRoute>
             } />
              <Route path="/medical-history" element={

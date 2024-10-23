@@ -20,29 +20,32 @@ const Login = () => {
             dispatch(hideLoading());
             if (res.data.success) {
                 localStorage.setItem("token", res.data.token);
-                message.success('Login Successfully');
+                message.success('Login Successfully', 5);
                 navigate('/');
             } else {
-                message.error(res.data.message)
+                message.error(res.data.message, 5)
             }
         } catch (error) {
             dispatch(hideLoading());
             //console.log(error);
-            message.error('Something Went Wrong');
+            message.error('Something Went Wrong', 5);
         }
     }
 
     return (
         <div className="form-container">
             <Form layout="vertical" onFinish={onFinishHandler} className='login-form'>
-                <h3 className="center">Login Form</h3>
+                <h3 className="center text-center">Login</h3>
                 <Form.Item label="Email" name="email">
                     <Input type="email" required />
                 </Form.Item>
-                <Form.Item label="Password" name="password">
+                {/* <Form.Item label="Password" name="password">
                     <Input type="password" required />
-                </Form.Item>
-                <Link to="/register" className='ms-2'>Not a User ? Register Here</Link>
+                </Form.Item> */}
+                <Form.Item label="Password" name="password">
+                        <Input.Password required />
+                    </Form.Item>
+                <Link to="/register" className='ms-2'>Not a User ? Register Here</Link> &nbsp;&nbsp;
                 <button className='btn btn-primary' type="submit">Login</button>
             </Form>
         </div>

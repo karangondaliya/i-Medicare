@@ -58,7 +58,7 @@ const DoctorAppointments = () => {
             dataIndex: 'name',
             render: (text, record) => (
                 <span>
-                    {record.doctorInfo.first_name} {record.doctorInfo.last_name}
+                    {record.userInfo.username}
                 </span>
             )
         },

@@ -93,6 +93,10 @@ const BookingPage = () => {
         getUserData();
     }, []);
 
+    const disabledDate = (current) => {
+        return current && current < moment().startOf('day'); // Disable all dates before today
+      };
+
   return (
     <Layout>
         <center>
@@ -105,7 +109,7 @@ const BookingPage = () => {
                     {/* <h4>Timings: {doctor.timings[0]} - { doctor.timings[1]}</h4> */}
 
                     <div className='d-flex flex-column w-50'>
-                        <DatePicker aria-required={true} className='m-2' format="DD-MM-YY" onChange={(value) =>{
+                        <DatePicker aria-required={true} className='m-2' format="DD-MM-YY"  disabledDate={disabledDate} onChange={(value) =>{
                             //setIsAvailable(false) 
                             setDate(moment(value).format('DD-MM-YYYY'))
                         } }/>

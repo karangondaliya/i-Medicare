@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Layout } from '../components/Layout';
-import { Row } from 'antd';
+import { Row, Col } from 'antd';
 import DoctorList from '../components/DoctorList';
 
 const HomePage = () => {
@@ -26,13 +26,16 @@ const HomePage = () => {
     useEffect(() => {
         getUserData();
     }, []);
+    
     return (
         <Layout>
-            <h1 className='text-center'>HomePage</h1>
-            <Row>
+            <h2 className='text-center'>Home Page</h2>
+            <Row gutter={16}>
                 {
                     doctors && doctors.map(doctor => (
-                        <DoctorList doctor={doctor}/> 
+                        <Col span={8} key={doctor._id} className='mt-2'>
+                            <DoctorList doctor={doctor}/> 
+                        </Col>
                     ))
                 }
             </Row>
@@ -40,4 +43,4 @@ const HomePage = () => {
     )
 }
 
-export default HomePage
+export default HomePage;

@@ -8,32 +8,39 @@
 }
 
 .sidebar {
-    min-height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 300px;
-    border-radius: 5px;
+    height: 100vh; /* Full height for sidebar */
     background-color: rgb(83, 30, 181);
-    box-shadow: 0 0 2px gray;
-    margin-right: 20px;
     color: white;
+    box-shadow: 0 0 2px gray;
+    padding-top: 20px; /* Padding to adjust for the content */
+    z-index: 1000; /* Ensures it's always on top */
+
 }
 
 .content {
-    width: 100%;
-    height: 100%;
+    margin-left: 320px; /* Shift content to the right to make space for sidebar */
+    width: calc(100% - 320px); /* Adjust content width accordingly */
+    height: 100vh; /* Full height for content */
+    overflow-y: auto; /* Enable scrolling inside the content area */
 }
 
 .header {
     height: 10vh;
-    margin-bottom: 20px;
     box-shadow: 0 0 2px grey;
     background-color: white;
+    padding: 0 20px;
 }
 
 .body {
-    height: 85vh;
-    margin-bottom: 20px;
-    box-shadow: 0 0 2px grey;
+    height: 90vh; /* Takes remaining height below header */
     background-color: white;
+    overflow-y: auto; /* Body scrolls independently */
+    padding: 20px;
+    box-shadow: 0 0 2px grey;
 }
 
 .logo h6 {
@@ -74,9 +81,9 @@
 .header-content {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
     height: 50px;
-    justify-content: flex-end;
-    margin: 0 15px;
 }
 
 .header-content i {
@@ -85,6 +92,31 @@
 }
 
 .header-content a {
+    color: blue;
+    text-decoration: none;
+    margin: 0 10px;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+}
+
+.header-left {
+    flex: 1;
+    text-align: left;
+}
+
+.header-center {
+    flex: 1;
+    text-align: center;
+    font-size: 1.5rem;  /* Make the text slightly larger */
+    font-weight: bold;  /* Bold for emphasis */
+}
+
+.header-right {
+    flex: 1;
+    text-align: right;
+}
+
+.header-right a {
     color: blue;
     text-decoration: none;
     margin: 0 10px;

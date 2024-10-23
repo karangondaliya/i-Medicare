@@ -63,7 +63,7 @@ const AddRecords = () => {
 
     return (
         <Layout>
-            <h1>Add Medical Record</h1>
+            <h1 className='text-center'>Add Medical Record</h1>
             <Form layout="vertical" onFinish={handleFinish} className='m-3'>
                 <h4>Patient Details:</h4>
                 <Row gutter={20}>
@@ -97,9 +97,35 @@ const AddRecords = () => {
                         </Form.Item>
                     </Col>
                     <Col xs={24} md={12}>
-                        <Form.Item label="Total Bill" name="total_bill" rules={[{ required: true, message: 'Please enter total bill!' }]}>
-                            <Input type="number" placeholder='Enter Total Bill' />
+                        <Form.Item
+                            label="Total Bill"
+                            name="total_bill"
+                            rules={[
+                                {
+                                    validator: (_, value) => {
+                                        if (!value) {
+                                            return Promise.reject('Please enter total bill!'); // Show message if empty
+                                        }
+                                        if (value < 0) {
+                                            return Promise.reject('Total bill cannot be negative!'); // Show message if negative
+                                        }
+                                        return Promise.resolve();
+                                    },
+                                },
+                            ]}
+                        >
+                            <Input
+                                type="number"
+                                placeholder="Enter Total Bill"
+                                onKeyDown={(e) => {
+                                    if (e.key === '-' || e.key === '+') {
+                                        e.preventDefault(); // Prevent negative or positive signs from being entered
+                                    }
+                                }}
+                            />
                         </Form.Item>
+
+
                     </Col>
                     <Col xs={24} md={12}>
                         <Button type="primary" htmlType="submit" loading={loading} className='form-btn'>

@@ -4,9 +4,12 @@ import { Row, Col, Card, Spin, message } from 'antd';
 import axios from 'axios';
 import "../../styles/AllMedicalHistory.css";
 
+
 const AllMedicalHistory = () => {
     const [loading, setLoading] = useState(false);
     const [medicalHistory, setMedicalHistory] = useState([]);
+    const [totalAmount, setTotalAmount] = useState(0); // State for total amount
+
 
     const fetchMedicalHistory = async () => {
         setLoading(true);
@@ -21,6 +24,11 @@ const AllMedicalHistory = () => {
             });
             if (res.data.success) {
                 setMedicalHistory(res.data.records);
+
+
+                // Calculate the total amount of all bills
+                const total = res.data.records.reduce((sum, record) => sum + record.total_bill, 0);
+                setTotalAmount(total); // Update the total amount state
             } else {
                 message.error('Failed to fetch medical history');
             }
@@ -30,13 +38,20 @@ const AllMedicalHistory = () => {
         setLoading(false);
     };
 
+
     useEffect(() => {
         fetchMedicalHistory();
     }, []);
 
+
     return (
         <Layout>
-            <h1 className="text-center">Medical History</h1>
+            <div className="header-container">
+                <h1 className="text-center">Medical History</h1>
+                <div className="total-amount">
+                    <strong>Total Amount of Bills: </strong>₹{totalAmount.toFixed(2)}
+                </div>
+            </div>
             {loading ? (
                 <Spin size="large" className="d-flex justify-content-center" />
             ) : (
@@ -44,7 +59,7 @@ const AllMedicalHistory = () => {
                     {medicalHistory.length > 0 ? (
                         medicalHistory.map((record, index) => (
                             <Col span={8} key={index}>
-                                <Card 
+                                <Card
                                     title={<strong>Patient: {record.patient_name}</strong>}
                                     bordered={false}
                                     className="medical-card"
@@ -70,5 +85,6 @@ const AllMedicalHistory = () => {
         </Layout>
     );
 };
+
 
 export default AllMedicalHistory;

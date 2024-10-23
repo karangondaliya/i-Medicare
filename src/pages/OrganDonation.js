@@ -12,6 +12,11 @@ const OrganDonation = () => {
   const [form] = Form.useForm();
   const dispatch = useDispatch();
 
+
+    // Disable past dates
+    const disabledDate = (current) => {
+      return current && current < moment().startOf('day'); // Disable all dates before today
+    };
   // Handle form submission
   const handleFinish = async (values) => {
     try {
@@ -20,7 +25,7 @@ const OrganDonation = () => {
         ...values,
         date_of_donation: values.date_of_donation ? moment(values.date_of_donation).format('YYYY-MM-DD') : '',
       };
-      
+
       const res = await axios.post('/api/v1/user/registerOrganDonation', data, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -41,17 +46,17 @@ const OrganDonation = () => {
 
   return (
     <Layout>
-      <h1 className="text-center">Organ Donation Form</h1>
+      <h1 className="text-center">Organ Donation</h1>
       <Form layout="vertical" onFinish={handleFinish} className="m-3" form={form}>
         <Row gutter={20}>
           <Col xs={24} md={24} lg={8}>
-            <Form.Item label="Name" name="name" required rules={[{ required: true }]}>
-              <Input placeholder="Your Name" />
+            <Form.Item label="Name" name="name" required rules={[{ required: true, message: 'Name is required' }]}>
+              <Input placeholder="Name" />
             </Form.Item>
           </Col>
           <Col xs={24} md={24} lg={8}>
-            <Form.Item label="Email" name="email" required rules={[{ required: true, type: 'email' }]}>
-              <Input placeholder="Your Email" />
+            <Form.Item label="Email" name="email" required rules={[{ required: true, type: 'email', message: 'Email is required' }]}>
+              <Input placeholder="Email" />
             </Form.Item>
           </Col>
           <Col xs={24} md={24} lg={8}>
@@ -82,8 +87,8 @@ const OrganDonation = () => {
             </Form.Item>
           </Col>
           <Col xs={24} md={24} lg={8}>
-            <Form.Item label="Date of Donation" name="date_of_donation" required rules={[{ required: true }]}>
-              <DatePicker placeholder="Select Date of Donation" />
+            <Form.Item label="Date of Donation" name="date_of_donation" required rules={[{ required: true, message: 'Date of Donation is required' }]}>
+              <DatePicker placeholder="Select Date of Donation" disabledDate={disabledDate} />
             </Form.Item>
           </Col>
         </Row>

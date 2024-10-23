@@ -22,13 +22,20 @@ export const userMenu = [
     {
         name: 'Organ Donation',
         path: '/organ-donate',
-        icon: 'fa-solid fa-user'
+        icon: 'fa-solid fa-hand-holding-medical'
     },
     {
         name: 'Medical History',
         path: '/medical-history',
-        icon: 'fa-solid fa-user'
+        icon: 'fa-solid fa-file'
     },
+
+    {
+        name: 'About Us',
+        path: '/about-us',
+        icon: 'fa-solid fa-info-circle' // Change this to the info circle icon
+    },
+
 ]
 
 export const adminMenu = [
@@ -45,7 +52,7 @@ export const adminMenu = [
     {
         name: 'Users',
         path: '/admin/users',
-        icon: 'fa-solid fa-user'
+        icon: 'fa-solid fa-users'
     },
     {
         name: 'Profile',
@@ -55,17 +62,24 @@ export const adminMenu = [
     {
         name: 'Add Records',
         path: `/doctor/AddRecords`,
-        icon: 'fa-solid fa-user'
+        icon: 'fa-solid fa-plus'
     },
     {
-        name: 'MedicalHistory',
+        name: 'Medical History',
         path: '/admin/allmedicalhistory',
-        icon: 'fa-solid fa-user'
+        icon: 'fa-solid fa-file'
     },
     {
-        name: 'OrganDonationsList',
+        name: 'Organ Donations',
         path: '/admin/organdonationsdetails',
-        icon: 'fa-solid fa-user'
+        icon: 'fa-solid fa-hand-holding-medical'
     },
+
+    {
+        name: 'Feedbacks',
+        path: '/admin/feedback-list',
+        icon: 'fa-solid fa-info-circle', // Change this to the info circle icon
+    },
+
 
 ]
