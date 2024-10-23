@@ -100,7 +100,7 @@ const AboutUs = () => {
                 <Row>
                     <Col span={24}>
                         <div className="text-center">
-                            <Title level={1}>About i-Medicare</Title>
+                            <Title level={1}>About-us i-Medicare</Title>
                         </div>
                     </Col>
                 </Row>

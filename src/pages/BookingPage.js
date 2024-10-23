@@ -100,7 +100,7 @@ const BookingPage = () => {
   return (
     <Layout>
         <center>
-        <h2>Appointment Booking Page</h2><br/><br/>
+        <h2>Appointment Booking</h2><br/><br/>
         <div className='container m-2'>
             {doctor && (
                 <div>
