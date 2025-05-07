@@ -1,0 +1,41 @@
+.medical-card {
+    margin-bottom: 16px; /* Space between cards */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+    background-color: #fff; /* Optional: White background for cards */
+}
+
+
+.record-details {
+    padding: 15px 0; /* Increased padding inside the card */
+}
+
+
+.record-details p {
+    margin: 0; /* Remove default margins for paragraphs */
+    margin-bottom: 8px; /* Space between paragraphs */
+}
+
+
+.text-center {
+    text-align: center; /* Center text */
+    padding: 10px 0; /* Optional: Add vertical padding for better spacing */
+}
+
+
+/* AllMedicalHistory.css */
+.header-container {
+    display: flex;
+    justify-content: space-between; /* Aligns items to the ends */
+    align-items: center; /* Center vertically */
+    padding: 20px;
+}
+
+
+.total-amount {
+    font-size: 18px; /* Adjust font size */
+    color: #4CAF50; /* Example color, adjust as needed */
+    background-color: rgba(76, 175, 80, 0.1); /* Light green background for emphasis */
+    padding: 10px; /* Add some padding for visual comfort */
+    border-radius: 5px; /* Rounded corners for background */
+}

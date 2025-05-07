@@ -1,0 +1,108 @@
+.form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 20px;
+}
+
+.login-form {
+  background: white;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 420px;
+  border-top: 5px solid #2a8cc5;
+}
+
+.form-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #2a5989;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.form-subtitle {
+  font-size: 14px;
+  color: #707070;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.ant-form-item-label > label {
+  font-weight: 500;
+  color: #476282;
+}
+
+.login-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.login-btn {
+  height: 45px;
+  font-size: 16px;
+  font-weight: 500;
+  background: #2a8cc5;
+  border: none;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+  background: #1c7db6;
+  transform: translateY(-2px);
+}
+
+.register-link {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  color: #666;
+  font-size: 14px;
+}
+
+.register-link a {
+  color: #2a8cc5;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.register-link a:hover {
+  color: #1c7db6;
+  text-decoration: underline;
+}
+
+.form-footer {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 12px;
+  color: #808080;
+}
+
+.hospital-logo {
+  display: block;
+  margin: 0 auto 25px;
+  width: 80px;
+  height: 80px;
+}
+
+.secure-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+  color: #707070;
+  font-size: 12px;
+}
+
+.secure-note svg {
+  margin-right: 5px;
+  color: #2a8cc5;
+}

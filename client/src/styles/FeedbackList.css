@@ -1,0 +1,37 @@
+.feedback-list-container {
+    padding: 20px;
+}
+
+
+.record-details {
+    font-size: 16px; /* Increased font size for readability */
+}
+
+
+.star-rating {
+    display: flex;
+    margin: 5px 0;
+}
+
+
+.star {
+    font-size: 24px; /* Size of stars */
+    color: #d9d9d9; /* Default star color */
+}
+
+
+.star.filled {
+    color: #fadb14; /* Color for filled stars */
+}
+
+
+/* Optional styling for the Collapse panels */
+.ant-collapse-header {
+    font-weight: bold;
+    font-size: 18px; /* Slightly larger text for headers */
+}
+
+
+.ant-collapse-content {
+    background-color: #f9f9f9; /* Background color for expanded content */
+}
