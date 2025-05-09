@@ -34,35 +34,67 @@ const BookingPage = () => {
     //Booking Function
     const handleBooking = async () => {
         try{
-            setIsAvailable(true);
             if(!date && !time) {
-                return alert('Date & Time Required')
+                return alert('Date & Time Required');
             }
-            dispatch(showLoading())
-            const res = await axios.post('/api/v1/user/book-appointment', {
+            
+            // Check if the selected time is in the past
+            const selectedDateTime = moment(date + ' ' + time, 'DD-MM-YYYY HH:mm');
+            const now = moment();
+            
+            if(selectedDateTime.isBefore(now)) {
+                return message.error('Cannot book an appointment in the past');
+            }
+            
+            // First check availability
+            dispatch(showLoading());
+            const availRes = await axios.post('/api/v1/user/booking-availability',
+                {
+                    doctor_id: params.doctorId,
+                    date,
+                    time
+                },
+                {
+                    headers:{
+                        Authorization: `Bearer ${localStorage.getItem('token')}`
+                    }
+                }
+            );
+            
+            if(!availRes.data.success || availRes.data.message !== 'Appointment Available') {
+                dispatch(hideLoading());
+                return message.error('This slot is not available');
+            }
+            
+            // If available, proceed with booking
+            const bookRes = await axios.post('/api/v1/user/book-appointment', {
                 doctor_id: params.doctorId,
                 user_id: user._id,
                 doctorInfo: doctor,
                 userInfo: user,
-                date : date,
+                date: date,
                 time: time
             }, {
                 headers:{
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
-            })
-            dispatch(hideLoading())
-            if((await res).data.success){
-                message.success((await res).data.message)
+            });
+            
+            dispatch(hideLoading());
+            if(bookRes.data.success){
+                setIsAvailable(true);
+                message.success(bookRes.data.message);
             }
-        }catch(err){
-            dispatchEvent(hideLoading());
-            //console.log(err);
+        } catch(err) {
+            dispatch(hideLoading()); // Fixed from dispatchEvent to dispatch
+            message.error('Something went wrong');
         }
     }
-
     const handleAvailabilty = async () => {
         try{
+            if(!date && !time) {
+                return alert('Date & Time Required');
+            }
             dispatch(showLoading())
             const res = await axios.post('/api/v1/user/booking-availability',
                 {
@@ -77,10 +109,13 @@ const BookingPage = () => {
                 }
             )
             if(res.data.success){
-                setIsAvailable(true)
-                message.success(res.data.message)
-            }else{
-                message.success(res.data.message)
+                if(res.data.message === 'Appointment Available') {
+                    setIsAvailable(true);
+                    message.success(res.data.message);
+                } else {
+                    setIsAvailable(false);
+                    message.error(res.data.message);
+                }
             }
             dispatch(hideLoading())
         }catch(err){
