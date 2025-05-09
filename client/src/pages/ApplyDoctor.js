@@ -16,15 +16,26 @@ const ApplyDoctor = () => {
     //handle form
     const handleFinish = async (values) => {
         try {
-            //console.log(values);
             dispatch(showLoading());
-
             
-            const res = await axios.post('/api/v1/user/apply-doctor', { ...values, userId: user._id }, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
-                },
-            })
+            // Format timings to simple time strings
+            let formattedValues = {...values};
+            if (formattedValues.timings) {
+                formattedValues.timings = {
+                    start: values.timings[0].format('HH:mm'),
+                    end: values.timings[1].format('HH:mm')
+                };
+            }
+            
+            const res = await axios.post('/api/v1/user/apply-doctor', 
+                { ...formattedValues, userId: user._id }, 
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('token')}`
+                    },
+                }
+            );
+            
             dispatch(hideLoading());
             if (res.data.success) {
                 message.success(res.data.message)
