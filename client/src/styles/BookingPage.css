@@ -1,0 +1,242 @@
+.booking-container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.booking-title {
+    text-align: center;
+    color: #2a5989;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    gap: 1rem;
+}
+
+.doctor-booking-card {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.doctor-detail-card {
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    background: #fff;
+}
+
+.doctor-profile {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: linear-gradient(to right, #f8faff, #fff);
+    border-radius: 12px;
+}
+
+.doctor-avatar {
+    background: linear-gradient(135deg, #2a8cc5, #1a5f88);
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: white;
+    flex-shrink: 0;
+    box-shadow: 0 4px 15px rgba(42, 140, 197, 0.2);
+}
+
+.doctor-info {
+    flex: 1;
+}
+
+.doctor-name {
+    color: #2a5989;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.info-item.full-width {
+    grid-column: 1 / -1;
+}
+
+.info-item strong {
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.info-item span {
+    color: #2a5989;
+    font-size: 1.1rem;
+}
+
+.booking-section {
+    border-top: 1px solid #eee;
+    padding: 2rem 1.5rem;
+    margin-top: 1rem;
+    background: #fafbff;
+    border-radius: 0 0 16px 16px;
+}
+
+.booking-section-title {
+    color: #2a5989;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.booking-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.date-time-picker {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.picker-container {
+    position: relative;
+    width: 200px;
+}
+
+.picker-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #2a8cc5;
+    z-index: 1;
+}
+
+.date-picker,
+.time-picker {
+    width: 100%;
+    padding-left: 35px;
+}
+
+.availability-status {
+    text-align: center;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.availability-status.available {
+    background: #e6f7ee;
+    color: #0c6b3d;
+    border: 1px solid #a8e6c1;
+}
+
+.availability-status.unavailable {
+    background: #fff2f0;
+    color: #cf1322;
+    border: 1px solid #ffccc7;
+}
+
+.booking-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+
+.check-availability-btn,
+.book-now-btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 180px;
+}
+
+.check-availability-btn {
+    background-color: #2a8cc5;
+    color: white;
+}
+
+.book-now-btn {
+    background-color: #1a5f88;
+    color: white;
+}
+
+.check-availability-btn:hover:not(:disabled),
+.book-now-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.check-availability-btn:disabled,
+.book-now-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+    opacity: 0.7;
+}
+
+@media (max-width: 768px) {
+    .booking-container {
+        padding: 1rem;
+    }
+
+    .doctor-profile {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 1rem;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .date-time-picker {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .picker-container {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .booking-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .check-availability-btn,
+    .book-now-btn {
+        width: 100%;
+        max-width: 300px;
+    }
+}
