@@ -1,37 +1,100 @@
-.feedback-list-container {
-    padding: 20px;
+.feedback-list {
+    margin-top: 20px;
 }
 
-
-.record-details {
-    font-size: 16px; /* Increased font size for readability */
+.statistic-card {
+    border-radius: 8px;
+    transition: all 0.3s ease;
 }
 
-
-.star-rating {
-    display: flex;
-    margin: 5px 0;
+.statistic-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-
-.star {
-    font-size: 24px; /* Size of stars */
-    color: #d9d9d9; /* Default star color */
+.feedback-panel {
+    margin-bottom: 16px;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
 }
 
-
-.star.filled {
-    color: #fadb14; /* Color for filled stars */
+.feedback-panel:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-
-/* Optional styling for the Collapse panels */
-.ant-collapse-header {
-    font-weight: bold;
-    font-size: 18px; /* Slightly larger text for headers */
+.feedback-panel.rating-green {
+    border-left: 4px solid #52c41a;
 }
 
+.feedback-panel.rating-blue {
+    border-left: 4px solid #1890ff;
+}
 
-.ant-collapse-content {
-    background-color: #f9f9f9; /* Background color for expanded content */
+.feedback-panel.rating-orange {
+    border-left: 4px solid #faad14;
+}
+
+.feedback-panel.rating-red {
+    border-left: 4px solid #ff4d4f;
+}
+
+.feedback-content {
+    padding: 16px;
+}
+
+.feedback-rating {
+    margin-bottom: 16px;
+}
+
+.feedback-message {
+    background-color: #f5f5f5;
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+}
+
+.feedback-message p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+}
+
+.feedback-metadata {
+    color: #8c8c8c;
+    font-size: 14px;
+}
+
+.error-card {
+    margin: 24px;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .feedback-content {
+        padding: 12px;
+    }
+
+    .feedback-message {
+        padding: 12px;
+    }
+
+    .ant-statistic-title {
+        font-size: 14px;
+    }
+
+    .ant-statistic-content {
+        font-size: 20px;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.feedback-list {
+    animation: fadeIn 0.5s ease;
 }
